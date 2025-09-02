@@ -18,3 +18,7 @@
      - Calcul des distances à parcourir
 
    - Interface graphique qui présente le paradoxe
+
+   Le paradoxe de Zénon met en avant le fait que à chaque étape de la course, la tortue devance Achille, et si on regarde la position d'Achille par rapport à la tortue, on se retrouve dans une addition infinie.
+
+   Mais en réalité, lorsqu'on utilise des variables d'exemple et qu'on calcule leurs positions indépendemment, on peut déterminer le moment exact où Achille dépasse la tortue.
