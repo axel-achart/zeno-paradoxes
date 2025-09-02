@@ -1,4 +1,5 @@
 # Terminal Version
+
 import time
 
 def dichotomie():
@@ -30,8 +31,3 @@ def dichotomie():
     print()
 
 dichotomie()
-
-
-
-
-# Pygame Version
