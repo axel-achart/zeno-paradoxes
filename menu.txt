@@ -10,19 +10,24 @@ def display_menu():
     font = pygame.font.Font(None,36)
 
     achille_box = pygame.Rect(200, 100, 200, 40)
-    dichotomy_box = pygame.Rect(200, 100, 200, 40)
-    arrow_box = pygame.Rect(200, 100, 200, 40)
+    dichotomy_box = pygame.Rect(200, 200, 200, 40)
+    arrow_box = pygame.Rect(200, 300, 200, 40)
 
     running = True
     while running:
         screen.fill((30,30,30))
 
         title = font.render("Select your paradox",True,WHITE)
-        screen.blit(title, (100, 30))
+        screen.blit(title, (200, 30))
 
         pygame.draw.rect(screen,(255,255,255), achille_box)
-        screen.blit(font.render("achille_box",True,(BLACK)),(achille_box.x+10, achille_box.y+10))
+        screen.blit(font.render("Achille",True,(BLACK)),(achille_box.x+10, achille_box.y+10))
 
+        pygame.draw.rect(screen,(255,255,255), dichotomy_box)
+        screen.blit(font.render("Dichotomy",True,(BLACK)),(dichotomy_box.x+10, dichotomy_box.y+10))
+
+        pygame.draw.rect(screen,(255,255,255), arrow_box)
+        screen.blit(font.render("Arrow",True,(BLACK)),(arrow_box.x+10, arrow_box.y+10))
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
