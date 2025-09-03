@@ -14,19 +14,16 @@ def dichotomie():
     pygame.display.set_caption("Dichotomie Paradox")
 
     font = pygame.font.Font(None, 36)
-    clock = pygame.time.Clock()
 
     distance_total = 8
     distance_restante = distance_total
     etape = 1
 
-    # Dimensions
     margin = 100
     line_y = SCREEN_HEIGHT // 2
     rock_size = 50
     tree_size = 70  
 
-    # Positions fixes
     start_x = margin
     end_x = SCREEN_WIDTH - margin
 
@@ -71,7 +68,7 @@ def dichotomie():
             etape += 1
 
             pygame.display.flip()
-            pygame.time.delay(1500) # Delay comme time.sleep(1.5)
+            pygame.time.delay(1500) 
 
         else:
             pygame.quit()
