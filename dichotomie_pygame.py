@@ -36,6 +36,16 @@ def dichotomie():
     rock_img = pygame.transform.scale(rock_img, (rock_size, rock_size))
     tree_img = pygame.transform.scale(tree_img, (tree_size, tree_size))
 
+    screen.fill(BACKGROUND_COLOR)
+    text_init = font.render(f"Étape 0 = distance initiale : 8.000m", True, (0, 0, 0))
+    screen.blit(text_init, (SCREEN_WIDTH // 2 - text_init.get_width() // 2, 40))
+    pygame.draw.line(screen, (0, 0, 0), (start_x, line_y), (end_x, line_y), 5)
+    rock_x = start_x
+    screen.blit(rock_img, (rock_x - rock_size // 2, line_y - rock_size // 2))
+    screen.blit(tree_img, (end_x - tree_size // 2, line_y - tree_size // 2))
+    pygame.display.flip()
+    pygame.time.delay(1500)
+
     running = True
     while running:
         for event in pygame.event.get():
@@ -62,5 +72,8 @@ def dichotomie():
 
             pygame.display.flip()
             pygame.time.delay(1500) # Delay comme time.sleep(1.5)
+
+        else:
+            pygame.quit()
 
 dichotomie()
