@@ -1,11 +1,13 @@
 from turtle import screensize, title
 import pygame
 
+from config import *
 from achille_pygame import BLACK, WHITE, main_achille
+from dichotomie_pygame import dichotomy_box_display
 
 def display_menu():
     pygame.init()
-    screen = pygame.display.set_mode((800,600))
+    screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
     pygame.display.set_caption("Menu Zeno Paradoxes")
     font = pygame.font.Font(None,36)
 

@@ -7,7 +7,7 @@ TREE = "zeno-paradoxes/assets/img/tree.png"
 ROCK = "zeno-paradoxes/assets/img/rock.jpg"
 
 
-def dichotomie():
+def dichotomy_box_display():
     
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -69,8 +69,3 @@ def dichotomie():
 
             pygame.display.flip()
             pygame.time.delay(1500) 
-
-        else:
-            pygame.quit()
-
-dichotomie()
