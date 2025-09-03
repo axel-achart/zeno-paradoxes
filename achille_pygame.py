@@ -9,7 +9,7 @@ position_tortoise = 100
 iteration = 0
 total_time = 0
 
-WIDTH, HEIGHT = 800, 200
+WIDTH, HEIGHT = 800, 600
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 ACHILLE_COLOR = (0, 128, 255)
@@ -32,7 +32,7 @@ def race(position_achille, speed_achille, position_tortoise, speed_tortoise, ite
     return position_achille, position_tortoise, iteration, total_time
 
 
-def main():
+def main_achille():
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Achille and the Tortoise")
@@ -74,6 +74,10 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    running = False
+                    choosing = True
 
         screen.fill(WHITE)
 
@@ -105,11 +109,11 @@ def main():
                     achille_x, speed_achille, tortoise_x, speed_tortoise, iteration, total_time
                 )
         else:
-            end_text = font.render("Achille has caught the Tortoise!", True, (200, 0, 0))
+            end_text = font.render("Achille has caught back the Tortoise!", True, (200, 0, 0))
             screen.blit(end_text, (WIDTH//2-100, HEIGHT//2-10))
             pygame.display.flip()
             pygame.time.wait(2000)
             running = False
 
 if __name__ == "__main__":
-    main()
+    main_achille()
