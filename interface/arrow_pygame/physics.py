@@ -1,4 +1,4 @@
-import settings as S
+from interface.arrow_pygame import settings as S
 
 def step(x: float, y: float, vx: float, vy: float, dt: float) -> tuple[float, float, float, float]:
     """Euler semi-implicite avec gravité (sans frottements)."""

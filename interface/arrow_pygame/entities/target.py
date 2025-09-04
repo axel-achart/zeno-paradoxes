@@ -1,5 +1,6 @@
 import pygame
-import settings as S
+from interface.arrow_pygame import settings as S
+
 
 class WallTarget:
     def __init__(self, screen_w: int, thickness_px: int = 8):

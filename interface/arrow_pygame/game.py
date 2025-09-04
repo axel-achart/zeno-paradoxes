@@ -1,8 +1,9 @@
 import math
 import pygame
-import settings as S
-from entities.arrow import Arrow
-from entities.target import WallTarget
+from interface.arrow_pygame import settings as S
+from interface.arrow_pygame.entities.arrow import Arrow
+from interface.arrow_pygame.entities.target import WallTarget
+
 
 # --- Composant bouton simple ---
 class Button:

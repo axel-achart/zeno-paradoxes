@@ -1,5 +1,5 @@
 import pygame
-from game import Game
+from interface.arrow_pygame.game import Game
 
 def main():
     pygame.init()
@@ -7,6 +7,3 @@ def main():
         Game().run()
     finally:
         pygame.quit()
-
-if __name__ == "__main__":
-    main()

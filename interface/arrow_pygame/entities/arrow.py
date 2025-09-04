@@ -1,8 +1,7 @@
 import math
 import pygame
-import settings as S
-import physics
-import utils
+from interface.arrow_pygame import settings as S, physics, utils
+
 
 class Arrow:
     def __init__(self, x: float, y: float, vx: float, vy: float):
