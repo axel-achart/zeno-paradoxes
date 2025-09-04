@@ -3,6 +3,7 @@ import pygame
 from config import *
 from interface.achille_pygame import BLACK, WHITE, main_achille
 from interface.dichotomie_pygame import dichotomy_box_display
+from interface.arrow_pygame.main import main 
 
 def display_menu():
     pygame.init()
@@ -42,7 +43,8 @@ def display_menu():
                     dichotomy_box_display()
                 
                 elif arrow_box.collidepoint(event.pos):
-                    arrow_box_display()
+                    main()
+                    
         pygame.display.flip()
 
 
