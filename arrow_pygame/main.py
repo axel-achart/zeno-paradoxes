@@ -1,7 +1,7 @@
 import pygame
-from src.game import Game
+from game import Game
 
-def main() -> None:
+def main():
     pygame.init()
     try:
         Game().run()
