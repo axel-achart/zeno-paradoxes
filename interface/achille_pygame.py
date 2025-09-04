@@ -6,7 +6,7 @@ import pygame_widgets
 from pygame_widgets.slider import Slider
 from pygame_widgets.textbox import TextBox
 
-# Simulation parameters
+# Simulation parameterspip
 speed_achille = 10
 speed_tortoise = speed_achille / 2
 position_achille = 0
