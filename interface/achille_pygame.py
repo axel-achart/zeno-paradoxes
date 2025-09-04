@@ -35,7 +35,7 @@ def race(position_achille, speed_achille, position_tortoise, speed_tortoise, ite
 def main_achille():
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption("Achille and the Tortoise")
+    pygame.display.set_caption("Zeno Paradox - Achille and the Tortoise")
     mode = None
 
     font = pygame.font.SysFont(None, 24)
@@ -84,12 +84,12 @@ def main_achille():
         # Draw Achille
         pygame.draw.circle(screen, ACHILLE_COLOR, (int(achille_x)+50, HEIGHT//2-30), 20)
         achille_label = font.render(f"Achille: {achille_x:.2f}m", True, BLACK)
-        screen.blit(achille_label, (int(achille_x)+30, HEIGHT//2-60))
+        screen.blit(achille_label, (int(achille_x)+30, HEIGHT//2))
 
         # Draw Tortoise
-        pygame.draw.circle(screen, TORTOISE_COLOR, (int(tortoise_x)+50, HEIGHT//2+30), 20)
+        pygame.draw.circle(screen, TORTOISE_COLOR, (int(tortoise_x)+50, HEIGHT//2+60), 20)
         tortoise_label = font.render(f"Tortoise: {tortoise_x:.2f}m", True, BLACK)
-        screen.blit(tortoise_label, (int(tortoise_x)+30, HEIGHT//2+10))
+        screen.blit(tortoise_label, (int(tortoise_x)+30, HEIGHT//2+90))
 
         # Draw info
         info = font.render(f"Iteration: {iteration}  Total time: {total_time:.2f}s  Mode: {mode}", True, BLACK)

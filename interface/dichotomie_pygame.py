@@ -11,7 +11,7 @@ def dichotomy_box_display():
     
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("Dichotomie Paradox")
+    pygame.display.set_caption("Zeno Paradox - Dichotomie")
 
     font = pygame.font.Font(None, 36)
 
@@ -69,3 +69,5 @@ def dichotomy_box_display():
 
             pygame.display.flip()
             pygame.time.delay(1500) 
+        else:
+            running = False

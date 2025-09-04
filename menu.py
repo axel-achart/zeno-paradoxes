@@ -1,9 +1,8 @@
-from turtle import screensize, title
 import pygame
 
 from config import *
-from achille_pygame import BLACK, WHITE, main_achille
-from dichotomie_pygame import dichotomy_box_display
+from interface.achille_pygame import BLACK, WHITE, main_achille
+from interface.dichotomie_pygame import dichotomy_box_display
 
 def display_menu():
     pygame.init()
