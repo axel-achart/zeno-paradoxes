@@ -1,9 +1,14 @@
+from doctest import OutputChecker
 import math
+from tkinter import font
+from matplotlib.pyplot import sca
 import pygame
 from interface.arrow_pygame import settings as S
 from interface.arrow_pygame.entities.arrow import Arrow
 from interface.arrow_pygame.entities.target import WallTarget
-
+import pygame_widgets
+from pygame_widgets.slider import Slider
+from pygame_widgets.textbox import TextBox
 
 # --- Composant bouton simple ---
 class Button:
@@ -63,11 +68,21 @@ class Game:
         self.font = pygame.font.SysFont("consolas", 18)
         self.font_small = pygame.font.SysFont("consolas", 16)
 
+        # sliders
+        self.sliderSpeed = Slider(self.screen,30,80,100,20,min=1,max=100,step=1,initial=42)
+        self.outputSpeed = TextBox(self.screen,150,75,50,33)
+        self.outputSpeed.disable()
+
+        self.sliderAngle = Slider(self.screen,400,80,100,20,min=1,max=100,step=1,initial=38)
+        self.outputAngle = TextBox(self.screen,520,75,50,33)
+        self.outputAngle.disable()
+
         # barre de contrôle
         self.controls_h = 54
         pad = 10
         y = S.WIN_H - self.controls_h + (self.controls_h - S.BTN_H) // 2
 
+        
         x = pad
         self.btn_launch = Button(" Lancer", pygame.Rect(x, y, 120, S.BTN_H), self.launch); x += 120 + pad
         self.btn_pause  = Button(" Pause", pygame.Rect(x, y, 120, S.BTN_H), self.toggle_pause); x += 120 + pad
@@ -152,6 +167,7 @@ class Game:
             b.draw(self.screen, self.font)
 
     def draw(self):
+        events = pygame.event.get()
         self.screen.fill(S.BG)
         pygame.draw.line(self.screen, S.GROUND, (0, self.ground_px), (S.WIN_W, self.ground_px), 3)
         self.wall.draw(self.screen, self.ground_px)
@@ -162,8 +178,12 @@ class Game:
         self.screen.blit(
             self.font_small.render(
                 f"v0={S.V0:.1f} m/s | angle={S.ANGLE_DEG:.1f}° | speed={math.hypot(self.arrow.vx, self.arrow.vy):.1f} m/s",
-                True, (40, 40, 40)), (10, 36)
+                True, (40, 40, 40)), (10, 40)
         )
+
+        self.outputSpeed.setText(str(self.sliderSpeed.getValue()))
+        self.outputAngle.setText(str(self.sliderAngle.getValue()))
+        pygame_widgets.update(events)
 
         # Overlay Zénon (optionnel visuel simple)
         if self.zeno_mode:
