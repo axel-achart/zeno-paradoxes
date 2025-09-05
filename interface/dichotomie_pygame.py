@@ -3,8 +3,8 @@
 import pygame
 from config import *
 
-TREE = "zeno-paradoxes/assets/img/tree.png"
-ROCK = "zeno-paradoxes/assets/img/rock.jpg"
+TREE = "assets/img/tree.png"
+ROCK = "assets/img/rock.jpg"
 
 
 def dichotomy_box_display():
