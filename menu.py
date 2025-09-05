@@ -1,0 +1,48 @@
+import pygame
+
+from config import *
+from interface.achille_pygame import BLACK, WHITE, main_achille
+from interface.dichotomie_pygame import dichotomy_box_display
+from interface.arrow_pygame.main import main 
+
+def display_menu():
+    pygame.init()
+    screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+    pygame.display.set_caption("Menu Zeno Paradoxes")
+    font = pygame.font.Font(None,36)
+
+    achille_box = pygame.Rect(200, 100, 200, 40)
+    dichotomy_box = pygame.Rect(200, 200, 200, 40)
+    arrow_box = pygame.Rect(200, 300, 200, 40)
+
+    running = True
+    while running:
+        screen.fill((30,30,30))
+
+        title = font.render("Select your paradox",True,WHITE)
+        screen.blit(title, (200, 30))
+
+        pygame.draw.rect(screen,(255,255,255), achille_box)
+        screen.blit(font.render("Achille",True,(BLACK)),(achille_box.x+10, achille_box.y+10))
+
+        pygame.draw.rect(screen,(255,255,255), dichotomy_box)
+        screen.blit(font.render("Dichotomy",True,(BLACK)),(dichotomy_box.x+10, dichotomy_box.y+10))
+
+        pygame.draw.rect(screen,(255,255,255), arrow_box)
+        screen.blit(font.render("Arrow",True,(BLACK)),(arrow_box.x+10, arrow_box.y+10))
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                return None
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if achille_box.collidepoint(event.pos):
+                    main_achille()
+                
+                elif dichotomy_box.collidepoint(event.pos):
+                    dichotomy_box_display()
+                
+                elif arrow_box.collidepoint(event.pos):
+                    main()
+                    
+        pygame.display.flip()
