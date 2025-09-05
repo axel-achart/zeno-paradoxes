@@ -11,8 +11,8 @@ class Arrow:
         self.active = True
         self.trail: list[tuple[float, float]] = []
 
-        # Sprite petit (~40x10 px), orienté par défaut vers la gauche puis flip → droite
-        self.sprite = pygame.Surface((40, 10), pygame.SRCALPHA)
+        # Sprite petit (~60x30 px), orienté par défaut vers la gauche puis flip → droite
+        self.sprite = pygame.Surface((60, 30), pygame.SRCALPHA)
         pygame.draw.rect(self.sprite, (160, 120, 60), pygame.Rect(6, 4, 24, 2))       # fût
         pygame.draw.polygon(self.sprite, (200, 40, 40), [(4, 5), (10, 1), (10, 9)])   # empennage
         pygame.draw.polygon(self.sprite, (160, 160, 160), [(28, 5), (38, 1), (38, 9)])# pointe
