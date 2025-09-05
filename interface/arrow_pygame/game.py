@@ -53,9 +53,9 @@ class Game:
         self.ground_px = S.WIN_H - 60
 
         # entités
-        vx0 = S.V0 * math.cos(math.radians(S.ANGLE_DEG))
-        vy0 = S.V0 * math.sin(math.radians(S.ANGLE_DEG))
-        self.arrow = Arrow(0.0, 0.0, vx0, vy0)
+        self.vx0 = S.V0 * math.cos(math.radians(S.ANGLE_DEG))
+        self.vy0 = S.V0 * math.sin(math.radians(S.ANGLE_DEG))
+        self.arrow = Arrow(0.0, 0.0, self.vx0, self.vy0)
         self.wall = WallTarget(S.WIN_W)
 
         # états
@@ -73,7 +73,7 @@ class Game:
         self.outputSpeed = TextBox(self.screen,150,75,50,33)
         self.outputSpeed.disable()
 
-        self.sliderAngle = Slider(self.screen,400,80,100,20,min=1,max=100,step=1,initial=38)
+        self.sliderAngle = Slider(self.screen,400,80,100,20,min=1,max=90,step=1,initial=38)
         self.outputAngle = TextBox(self.screen,520,75,50,33)
         self.outputAngle.disable()
 
@@ -106,16 +106,19 @@ class Game:
         self.ready = False
         self.paused = False
         self.sync_buttons()
-
+        self.vx0=(self.sliderSpeed.getValue())*math.cos(math.radians(self.sliderAngle.getValue()))
+        self.vy0=(self.sliderSpeed.getValue())*math.sin(math.radians(self.sliderAngle.getValue()))
+        self.arrow = Arrow(0.0, 0.0, self.vx0, self.vy0)
+        
     def toggle_pause(self):
         if not self.ready:
             self.paused = not self.paused
             self.sync_buttons()
 
     def reset(self):
-        vx0 = S.V0 * math.cos(math.radians(S.ANGLE_DEG))
-        vy0 = S.V0 * math.sin(math.radians(S.ANGLE_DEG))
-        self.arrow.reset(0.0, 0.0, vx0, vy0)
+        self.vx0 = S.V0 * math.cos(math.radians(S.ANGLE_DEG))
+        self.vy0 = S.V0 * math.sin(math.radians(S.ANGLE_DEG))
+        self.arrow.reset(0.0, 0.0, self.vx0, self.vy0)
         self.ready, self.paused, self.accumulator = True, False, 0.0
         self.sync_buttons()
 
@@ -175,11 +178,18 @@ class Game:
 
         state = "PRÊT (clic  Lancer)" if self.ready else ("PAUSE" if self.paused else "EN COURS")
         self.screen.blit(self.font.render(f"État: {state}", True, S.HUD), (10, 10))
-        self.screen.blit(
-            self.font_small.render(
-                f"v0={S.V0:.1f} m/s | angle={S.ANGLE_DEG:.1f}° | speed={math.hypot(self.arrow.vx, self.arrow.vy):.1f} m/s",
-                True, (40, 40, 40)), (10, 40)
-        )
+        if self.sliderAngle.getValue()!=S.ANGLE_DEG or self.sliderSpeed.getValue()!=S.V0:
+            self.screen.blit(
+                self.font_small.render(
+                    f"v0={self.sliderSpeed.getValue():.1f} m/s | angle={self.sliderAngle.getValue():.1f}° | speed={math.hypot(self.arrow.vx, self.arrow.vy):.1f} m/s",
+                    True, (40, 40, 40)), (10, 40)
+            )
+        else:
+            self.screen.blit(
+                self.font_small.render(
+                    f"v0={S.V0:.1f} m/s | angle={S.ANGLE_DEG:.1f}° | speed={math.hypot(self.arrow.vx, self.arrow.vy):.1f} m/s",
+                    True, (40, 40, 40)), (10, 40)
+            )
 
         self.outputSpeed.setText(str(self.sliderSpeed.getValue()))
         self.outputAngle.setText(str(self.sliderAngle.getValue()))
