@@ -1,4 +1,3 @@
-# Pygame Version
 
 import pygame
 from config import *
@@ -27,7 +26,6 @@ def dichotomy_box_display():
     start_x = margin
     end_x = SCREEN_WIDTH - margin
 
-    # Images
     rock_img = pygame.image.load(ROCK)
     tree_img = pygame.image.load(TREE)
     rock_img = pygame.transform.scale(rock_img, (rock_size, rock_size))

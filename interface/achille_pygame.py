@@ -6,7 +6,6 @@ import pygame_widgets
 from pygame_widgets.slider import Slider
 from pygame_widgets.textbox import TextBox
 
-# Simulation parameterspip
 speed_achille = 10
 speed_tortoise = speed_achille / 2
 position_achille = 0
@@ -104,7 +103,6 @@ def main_achille():
         screen.blit(achillespeedmsg,(50,333))
 
         
-        # Draw Sliders
         outputTurtlePos.setText(str(sliderTurtlePos.getValue()))
         outputTurtleSpeed.setText(str(sliderTurtleSpeed.getValue()))
         outputAchilleSpeed.setText(str(sliderAchilleSpeed.getValue()))
@@ -132,26 +130,23 @@ def main_achille():
 
         screen.fill(WHITE)
 
-        # Draw Achille
         pygame.draw.circle(screen, ACHILLE_COLOR, (int(achille_x)+50, HEIGHT//2-30), 20)
         achille_label = font.render(f"Achille: {achille_x:.2f}m", True, BLACK)
         screen.blit(achille_label, (int(achille_x)+30, HEIGHT//2))
 
-        # Draw Tortoise
         pygame.draw.circle(screen, TORTOISE_COLOR, (int(tortoise_x)+50, HEIGHT//2+60), 20)
         tortoise_label = font.render(f"Tortoise: {tortoise_x:.2f}m", True, BLACK)
         screen.blit(tortoise_label, (int(tortoise_x)+30, HEIGHT//2+90))
 
-        # Draw Info
         info = font.render(f"Iteration: {iteration}  Total time: {total_time:.2f}s  Mode: {mode}", True, BLACK)
         screen.blit(info, (10, 10))
 
 
 
         pygame.display.flip()
-        clock.tick(1)  # Slow down for visualization
+        clock.tick(1) 
         print(mode)
-        # Update positions
+
         if achille_x < tortoise_x:
             if mode == 1:
                 achille_x, tortoise_x, iteration, total_time = move_ach_to_tort(

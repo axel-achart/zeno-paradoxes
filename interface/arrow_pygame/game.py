@@ -10,7 +10,6 @@ import pygame_widgets
 from pygame_widgets.slider import Slider
 from pygame_widgets.textbox import TextBox
 
-# --- Composant bouton simple ---
 class Button:
     def __init__(self, label: str, rect: pygame.Rect, on_click):
         self.label = label
@@ -52,23 +51,19 @@ class Game:
         self.clock = pygame.time.Clock()
         self.ground_px = S.WIN_H - 60
 
-        # entités
         self.vx0 = S.V0 * math.cos(math.radians(S.ANGLE_DEG))
         self.vy0 = S.V0 * math.sin(math.radians(S.ANGLE_DEG))
         self.arrow = Arrow(0.0, 0.0, self.vx0, self.vy0)
         self.wall = WallTarget(S.WIN_W)
 
-        # états
         self.ready = True
         self.paused = False
         self.zeno_mode = False
         self.accumulator = 0.0
 
-        # polices
         self.font = pygame.font.SysFont("consolas", 18)
         self.font_small = pygame.font.SysFont("consolas", 16)
 
-        # sliders
         self.sliderSpeed = Slider(self.screen,30,80,100,20,min=1,max=100,step=1,initial=42)
         self.outputSpeed = TextBox(self.screen,150,75,50,33)
         self.outputSpeed.disable()
@@ -77,7 +72,6 @@ class Game:
         self.outputAngle = TextBox(self.screen,520,75,50,33)
         self.outputAngle.disable()
 
-        # barre de contrôle
         self.controls_h = 54
         pad = 10
         y = S.WIN_H - self.controls_h + (self.controls_h - S.BTN_H) // 2
@@ -100,7 +94,6 @@ class Game:
         self.buttons = [self.btn_launch, self.btn_pause, self.btn_reset, self.btn_zeno, self.btn_step, self.btn_quit]
         self.sync_buttons()
 
-    # --- callbacks ---
     def launch(self):
         self.reset()
         self.ready = False
@@ -137,7 +130,6 @@ class Game:
         self.btn_pause.label = " Reprendre" if self.paused else "Pause"
         self.btn_zeno.active = self.zeno_mode
 
-    # --- events ---
     def handle_events(self):
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
@@ -150,7 +142,6 @@ class Game:
         pygame.quit()
         raise SystemExit
 
-    # --- update ---
     def update(self, dt: float):
         if self.ready:
             return
@@ -161,7 +152,6 @@ class Game:
             self.accumulator -= S.FIXED_DT
         self.sync_buttons()
 
-    # --- draw ---
     def draw_controls_bar(self):
         bar_rect = pygame.Rect(0, S.WIN_H - self.controls_h, S.WIN_W, self.controls_h)
         pygame.draw.rect(self.screen, (250, 250, 250), bar_rect)
@@ -195,7 +185,6 @@ class Game:
         self.outputAngle.setText(str(self.sliderAngle.getValue()))
         pygame_widgets.update(events)
 
-        # Overlay Zénon (optionnel visuel simple)
         if self.zeno_mode:
             dx = self.arrow.x - getattr(self.arrow, "px", self.arrow.x)
             dy = self.arrow.y - getattr(self.arrow, "py", self.arrow.y)
@@ -210,8 +199,7 @@ class Game:
 
         self.draw_controls_bar()
         pygame.display.flip()
-
-    # --- main loop ---
+        
     def run(self):
         running = True
         while running:
