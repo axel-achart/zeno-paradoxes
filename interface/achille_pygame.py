@@ -26,6 +26,7 @@ def move_ach_to_tort(position_achille, position_tortoise, speed_achille, speed_t
     position_tortoise = position_tortoise + time_spent * speed_tortoise
     iteration += 1
     total_time += time_spent
+    time.sleep(1)
     return position_achille, position_tortoise, iteration, total_time
 
 def race(position_achille, position_tortoise,speed_achille, speed_tortoise, iteration, total_time):
@@ -150,13 +151,13 @@ def main_achille():
         if achille_x < tortoise_x:
             if mode == 1:
                 achille_x, tortoise_x, iteration, total_time = move_ach_to_tort(
-                    achille_x, sliderTurtlePos.getValue(), sliderAchilleSpeed.getValue(), sliderTurtleSpeed.getValue(), iteration, total_time
+                    achille_x, tortoise_x, sliderAchilleSpeed.getValue(), sliderTurtleSpeed.getValue(), iteration, total_time
                 )
             elif mode == 2:
                 achille_x, tortoise_x, iteration, total_time = race(
-                    achille_x,sliderTurtlePos.getValue(),sliderAchilleSpeed.getValue(),sliderTurtleSpeed.getValue(), iteration, total_time
+                    achille_x,tortoise_x,sliderAchilleSpeed.getValue(),sliderTurtleSpeed.getValue(), iteration, total_time
                 )
-            print(f"pos T = {sliderTurtlePos.getValue()}\nspeed T {sliderTurtleSpeed.getValue()}\nspeed A {sliderAchilleSpeed.getValue()}") 
+            print(f"pos T = {tortoise_x}\nspeed T {speed_tortoise}\nspeed A {speed_achille}") 
 
         else:
             end_text = font.render("Achille has caught back the Tortoise!", True, (200, 0, 0))
